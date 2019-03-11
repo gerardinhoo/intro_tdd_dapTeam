@@ -1,9 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import { shallow } from "enzyme";
+import App from "./App";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("App component", () => {
+  let wrapper = shallow(<App />);
+
+  it("renders the  header", () => {
+    expect(wrapper.find("[data-dap]").exists()).toBeTruthy();
+  });
+  it("renders the header text", () => {
+    expect(wrapper.text()).toBe("Welcome to the DAP TEAM!");
+  });
+  it("checks for the right lenght", () => {
+    expect(wrapper).toHaveLength(1);
+  });
 });
